@@ -8,8 +8,7 @@ Gem::Specification.new do |spec|
   spec.version       = NerveRegistry::VERSION
   spec.authors       = ["Dan Kinsley"]
   spec.email         = ["dan@thinkingphones.com"]
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
+  spec.summary       = %q{A docker sidekick that registers ip/port information into etcd}
   spec.homepage      = ""
   spec.license       = "MIT"
 
@@ -20,5 +19,6 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency "bundler", "~> 1.6"
   spec.add_development_dependency "rake"
-  spec.add_dependency "nerve"
+  spec.add_runtime_dependency "nerve", "~> 0.5.3"
+  #spec.add_dependency "nerve"
 end

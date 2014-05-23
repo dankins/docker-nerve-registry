@@ -4,9 +4,10 @@ FROM        quay.io/queue/base-ruby
 
 # add the application and bundle
 ADD . /app
-RUN bundle --gemfile=/app/Gemfile
+RUN chown -R daemon /app
+#USER daemon
+WORKDIR /app
+RUN bundle install --deployment
 
-ENV           SYNAPSE_CONFIG      /app/config/conf.json
-VOLUME        ["/haproxy"]
-CMD           ["/app/bin/synapse"]
-
+ENV           NERVE_CONFIG      /app/config/config.json
+CMD           ["bundle", "exec","/app/bin/nerve_registry.rb"]
