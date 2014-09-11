@@ -1,10 +1,10 @@
-re "net/http"
-require "uri"
+#!/usr/bin/env ruby
+
 require 'yaml'
 require 'optparse'
 
 require 'nerve'
-require 'json' 
+
 options={}
 
 # set command line options
@@ -37,14 +37,6 @@ end
 # parse command line arguments
 optparse.parse!
 
-def getContainerDetails()
-  @DOCKER_HOST = ENV['DOCKER_HOST']
-  @DOCKER_PORT = ENV['DOCKER_PORT']
-  uri = URI.parse("http://#{@DOCKER_HOST}:#{@DOCKER_PORT}/containers/json")
-  response = Net::HTTP.get_response(uri)
-  JSON.parse response.body
-end
-
 def parseconfig(filename)
   # parse synapse config file
   begin
@@ -59,7 +51,6 @@ def parseconfig(filename)
   return c.to_ruby
 end
 
-getContainerDetails()
 config = parseconfig(options[:config])
 config['services'] ||= {}
 
